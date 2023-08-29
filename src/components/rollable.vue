@@ -49,7 +49,8 @@ const blockgen = computed(() => {
     block.text = rollablegen(form.displayText, form.diceNotation, form.rollType, {rollAction: form.rollAction, rollDamageType: form.rollDamageType})
     err.text = null;
   } catch (error) {
-    err.text = error.text;
+    console.log(error);
+    err.text = error;
   }
 })
 </script>

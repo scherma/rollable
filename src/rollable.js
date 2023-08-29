@@ -40,7 +40,7 @@ function rollable(displayText, diceNotation, rollType, optargs) {
   }
   
   if (rollType=="damage") {
-    if (optargs.rollDamageType==null) {
+    if (optargs.rollDamageType==null || optargs.rollDamageType=="") {
       throw new Error('Damage roll must have a damage type')
     } else {
       validateRollDamageType(optargs.rollDamageType)
