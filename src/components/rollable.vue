@@ -19,6 +19,9 @@
       </form>
       <button @click="blockgen">Generate</button>
     </div>
+    <div v-if="err.text" class="error">
+      <p>{{ err.text }}</p>
+    </div>
     <div fluid>
       <p>{{ block.text }}</p>
     </div>
@@ -51,3 +54,12 @@ const blockgen = computed(() => {
 })
 </script>
 
+<style>
+label {
+  padding: 0 8px 0 8px;
+} 
+
+.error {
+  color: #c94c4c;
+}
+</style>
