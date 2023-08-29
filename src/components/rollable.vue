@@ -2,13 +2,18 @@
   <div fluid>
     <div>
       <form>
-        <input required placeholder="Display Text" v-model="form.displayText" />
-        <input required placeholder="e.g. 3d6+4" v-model="form.diceNotation" />
-        <select v-model="form.rollType">
+        <label for="display">Display Text</label>
+        <input required id="display" placeholder="Display Text" v-model="form.displayText" />
+        <label for="diceNotation">Dice Notation</label>
+        <input required id="diceNotation" placeholder="e.g. 3d6+4" v-model="form.diceNotation" />
+        <label for="rollType">Roll Type</label>
+        <select id="rollType" v-model="form.rollType">
           <option v-for="rollType in validRollTypes">{{ rollType }}</option>
         </select>
-        <input placeholder="Roll action name" v-model="form.rollAction" />
-        <select v-if="form.rollType=='damage'" v-model="form.rollDamageType">
+        <label for="rollAction">Roll Action (optional)</label>
+        <input id="rollAction" placeholder="Roll action name" v-model="form.rollAction" />
+        <label v-if="form.rollType=='damage'" for="rollDamageType">Roll Damage Type</label>
+        <select id="rollDamageType" v-if="form.rollType=='damage'" v-model="form.rollDamageType">
           <option v-for="rollDamageType in validRollDamageTypes">{{ rollDamageType }}</option>
         </select>
       </form>
@@ -34,8 +39,15 @@ const form = reactive({
 
 const block = reactive({text: ""});
 
+const err = reactive({text: null});
+
 const blockgen = computed(() => {
-  block.text = rollablegen(form.displayText, form.diceNotation, form.rollType, {rollAction: form.rollAction, rollDamageType: form.rollDamageType})
+  try {
+    block.text = rollablegen(form.displayText, form.diceNotation, form.rollType, {rollAction: form.rollAction, rollDamageType: form.rollDamageType})
+    err.text = null;
+  } catch (error) {
+    err.text = error.text;
+  }
 })
 </script>
 
