@@ -51,9 +51,9 @@ function rollable(displayText, diceNotation, rollType, optargs) {
 }
 
 function validateNotation(diceNotation) {
-  let diceNotationElements = diceNotation.split("+")
+  let diceNotationElements = diceNotation.split(/[+\-]/)
   diceNotationElements.forEach((element) => {
-    if (! /^\d+(?:d(?:2|3|4|6|8|10|12|20|100))?$/.test(element) ) {
+    if (! /^\d+(?:[dD](?:2|3|4|6|8|10|12|20|100)(?:kh|kl)?)?$/.test(element) ) {
       throw new Error(`Invalid dice notation element "${element}"`)
     }
   })
