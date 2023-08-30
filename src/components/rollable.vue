@@ -1,6 +1,9 @@
 <template>
   <div fluid>
     <div>
+      <p>Generate a rollable dice block for D&amp;D Beyond stat sheets.</p>
+    </div>
+    <div>
       <form>
         <label for="display">Display Text</label>
         <input required id="display" placeholder="Display Text" v-model="form.displayText" />
